@@ -1,4 +1,5 @@
 # effective-typescript
+- Dan VanderKam의 Effective TypeScript에 대한 정리글입니다.
 
 ## 목차
 
