@@ -55,10 +55,10 @@ console.log(names[2].toUpperCase());
 
 ### 아이템 2 타입스크립트 설정 이해하기
 
-- 타입스크립트 설정은 커맨드 라인으로도 할 수 있지만 협업을 위해서 가급적 tsconfig.json을 사용하는 것이 좋습니다.
+- 타입스크립트 설정은 커맨드 라인으로도 할 수 있지만, 협업을 위해서 되도록 tsconfig.json을 사용하는 것이 좋습니다.
 - 자바스크립트 프로젝트를 타입스크립트로 전환하는 경우가 아니라면 `noImplicitAny`를 설정하는 것이 좋습니다.
 
-**안좋은 예:**
+**나쁜 예:**
 ```ts
 // tsConfig: {"noImplicitAny":false}
 
@@ -81,7 +81,7 @@ function add(a, b) {
 
 - "undefined는 객체가 아닙니다"와 같은 런타임 오류를 방지하기 위해 `strictNullChecks`를 설정하는 것이 좋습니다.
 
-**안좋은 예:**
+**나쁜 예:**
 ```ts
 // tsConfig: {"noImplicitAny":true,"strictNullChecks":false}
 
