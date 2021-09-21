@@ -17,7 +17,7 @@
 
 - 타입스크립트는 자바스크립트의 상위집합입니다. 모든 자바스크립트 프로그램은 타입스크립트 프로그램이지만, 타입스크립트는 별도의 문법을 가지고 있으므로 반대의 경우는 성립하지 않습니다.<ul>
 <details>
-<summary>예시 코드</summary>
+<summary>설명</summary>
 <div markdown="1"><br/>
   
 ```js
@@ -35,7 +35,7 @@ function greet(who: string) { // SyntaxError: Unexpected token :
 
 - 타입스크립트의 타입 구문은 코드의 '의도'가 무엇인지 알려주어 동작과 의도가 다른 부분을 찾을 수 있도록 도와줍니다.<ul>
 <details>
-<summary>예시 코드</summary>
+<summary>설명</summary>
 <div markdown="1"><br/>
   
 ```ts
@@ -60,7 +60,7 @@ const states: State[] = [
 
 - 타입스크립트의 타입 체커를 통과하면서도 런타임 오류를 발생시키는 코드가 존재할 수 있습니다. 타입 시스템은 정적 타입의 정확성을 보장해 주지는 않습니다.<ul>
 <details>
-<summary>예시 코드</summary>
+<summary>설명</summary>
 <div markdown="1"><br/>
   
 ```ts
@@ -78,14 +78,13 @@ console.log(names[2].toUpperCase());
 
 - 타입스크립트 설정은 커맨드 라인으로도 할 수 있지만, 협업을 위해서 되도록 tsconfig.json을 사용하는 것이 좋습니다.<ul>
 <details>
-<summary>예시 코드</summary>
+<summary>설명</summary>
 <div markdown="1"><br/>
   
 ```cli
 $ tsc --init
-
-// tsconfig.json 생성
 ```
+위 명령어를 입력하면 루트 디렉토리에 tsconfig.json 파일을 만들어줍니다.<br/><br/>
   
 </div>
 </details>
@@ -93,7 +92,7 @@ $ tsc --init
 
 - 자바스크립트 프로젝트를 타입스크립트로 전환하는 경우가 아니라면 `noImplicitAny`를 설정하는 것이 좋습니다.<ul>
 <details>
-<summary>예시 코드</summary>
+<summary>설명</summary>
 <div markdown="1"><br/>
   
 **나쁜 예:** 
@@ -104,6 +103,7 @@ function add(a, b) {
   return a + b;
 }
 ```
+`noImplicitAny`가 해제된 경우 함수의 타입이 설정되지 않아도 자동적으로 any로 추론됩니다.
   
 **좋은 예:**  
 ```ts
@@ -115,6 +115,7 @@ function add(a, b) {
   return a + b;
 }
 ```
+`noImplicitAny`가 설정된 경우 명시적으로 any 타입을 설정하지 않는 이상 추론된 결과가 any라면 에러가 발생합니다.<br/><br/>
   
 </div>
 </details>
@@ -122,7 +123,7 @@ function add(a, b) {
 
 - "undefined는 객체가 아닙니다"와 같은 런타임 오류를 방지하기 위해 `strictNullChecks`를 설정하는 것이 좋습니다.<ul>
 <details>
-<summary>예시 코드</summary>
+<summary>설명</summary>
 <div markdown="1"><br/>
   
 **나쁜 예:**
@@ -131,6 +132,7 @@ function add(a, b) {
 
 const x: number = null;  // OK, null is a valid number
 ```
+`strictNullChecks`을 설정하지 않는 경우 null과 undefined가 허용됩니다.
 
 **좋은 예:**
 ```ts
@@ -139,6 +141,7 @@ const x: number = null;  // OK, null is a valid number
 const x: number = null;
 //    ~ Type 'null' is not assignable to type 'number'
 ```
+`strictNullChecks`을 설정한 경우 null과 undefined를 명시적으로 허용하지 않는 이상 오류를 발생시킵니다. 이러한 방식은 코드 작성을 어렵게 하지만 "undefined는 객체가 아닙니다"와 같은 null과 undefined와 관련  런타임 오류를 잡아내는 데 많은 도움을 줍니다.<br/><br/>
   
 </div>
 </details>
@@ -146,7 +149,7 @@ const x: number = null;
 
 - 위의 모든 체크를 설정하고 싶다면 strict 설정을 할 수 있습니다. strict 설정은 대부분의 오류를 잡아냅니다.<ul>
 <details>
-<summary>예시 코드</summary>
+<summary>설명</summary>
 <div markdown="1"><br/>
   
 ```ts
@@ -154,6 +157,7 @@ const x: number = null;
     
 {"strict": true}
 ```
+`noImplicitAny`와 `strictNullChecks`는 모두 strict 설정 안에 포함되어있습니다.<br/><br/>
   
 </div>
 </details>
@@ -161,11 +165,181 @@ const x: number = null;
 
 ### 아이템 3 코드 생성과 타입이 관계없음을 이해하기
 
-- 타입 시스템과 컴파일은 무관합니다. 또한, 타입 오류가 있는 코드도 컴파일은 가능합니다.
-- 런타임에는 타입 체크가 불가능합니다.
-- 타입 연산은 런타임 성능에 영향을 주지 않습니다.
-- 런타임 타입은 선언된 타입과 다를 수 있습니다.
-- 타입스크립트 타입으로는 함수를 오버로드할 수 없습니다.
+- 타입 시스템과 컴파일은 무관합니다. 또한, 타입 오류가 있는 코드도 컴파일은 가능합니다.<ul>
+<details>
+<summary>설명</summary>
+<div markdown="1"><br/>
+  
+```ts
+// test.ts
+let x = 'hello';
+x = 1234;
+  
+// $ tsc test.ts
+// test.ts:2:1 - error TS2322: Type 'number' is not assignable to type 'string'.
+// 2 x = 1234;
+  
+// test.js
+var x = 'hello';
+x = 1234;  
+```
+타입 오류가 발생하는 ts 파일에 tsc 명령어(타입스크립트 파일을 자바스크립트 파일로 컴파일)를 사용하면 오류에도 불구하고 자바스크립트 파일이 문제 없이 생성되는 것을 볼 수 있습니다.<br/><br/>
+  
+</div>
+</details>
+</ul>
+
+- 런타임에는 타입 체크가 불가능합니다.<ul>
+<details>
+<summary>설명</summary>
+<div markdown="1"><br/>
+    
+**나쁜 예:** 
+```ts
+interface Square {
+  width: number;
+}
+interface Rectangle extends Square {
+  height: number;
+}
+type Shape = Square | Rectangle;
+
+function calculateArea(shape: Shape) {
+  if (shape instanceof Rectangle) {
+                    // ~~~~~~~~~ 'Rectangle' only refers to a type,
+                    //           but is being used as a value here
+    return shape.width * shape.height;
+                    //         ~~~~~~ Property 'height' does not exist
+                    //                on type 'Shape'
+  } else {
+    return shape.width * shape.width;
+  }
+}
+```
+만약 위와 같이 작성하면 instanceof 체크는 런타임에 일어나지만, Rectangle은 타입이기 때문에 컴파일 과정에서 사라져 오류를 발생시킵니다.
+  
+  **좋은 예:** 
+```ts
+interface Square {
+  kind: 'square';
+  width: number;
+}
+interface Rectangle {
+  kind: 'rectangle';
+  height: number;
+  width: number;
+}
+type Shape = Square | Rectangle;
+
+function calculateArea(shape: Shape) {
+  if (shape.kind === 'rectangle') {
+    shape;  // Type is Rectangle
+    return shape.width * shape.height;
+  } else {
+    shape;  // Type is Square
+    return shape.width * shape.width;
+  }
+}
+```
+위와 같이 런타임에 접근 가능한 타입 정보를 명시적으로 저장하는 '태그' 기법을 사용하면 오류를 발생시키지 않습니다.
+  
+**좋은 예:** 
+```ts
+class Square {
+  constructor(public width: number) {}
+}
+class Rectangle extends Square {
+  constructor(public width: number, public height: number) {
+    super(width);
+  }
+}
+type Shape = Square | Rectangle;
+
+function calculateArea(shape: Shape) {
+  if (shape instanceof Rectangle) {
+    shape;  // Type is Rectangle
+    return shape.width * shape.height;
+  } else {
+    shape;  // Type is Square
+    return shape.width * shape.width;  // OK
+  }
+}
+```
+타입을 클래스로 만드는 방법을 사용할 수도 있습니다. 이러한 방식을 이용하면 Rectangle은 타입이자 값으로 모두 사용할 수 있으므로 오류를 발생시키지 않습니다.<br/><br/>
+  
+</div>
+</details>
+</ul>
+
+- 타입 연산은 런타임에 영향을 주지 않습니다. 따라서 타입은 런타임 성능과도 무관합니다.<ul>
+<details>
+<summary>설명</summary>
+<div markdown="1"><br/>
+    
+**나쁜 예:** 
+```ts
+// TypeScript  
+function asNumber(val: number | string): number {
+  return val as number;
+}
+
+// Javascript  
+function asNumber(val) {
+  return val;
+}
+```
+만약 string이나 number 타입인 값을 항상 number 타입으로 정제하기 위해 위와 같이 작성하였다면 이는 아무런 기능을 하지 못합니다. as number는 타입 연산이고 런타임 동작과는 무관하기 때문입니다.
+  
+**좋은 예:** 
+```ts
+function asNumber(val: number | string): number {
+  return typeof(val) === 'string' ? Number(val) : val;
+}
+```
+값을 제대로 정제하기 위해서는 자바스크립트 연산을 통해 변환을 수행해야 합니다. 이처럼 타입과 타입 연산자는 자바스크립트 변환 시점에 제거되기 때문에 런타임의 성능에 아무런 영향을 주지 않습니다.
+<br/><br/>
+  
+</div>
+</details>
+</ul>
+  
+- 런타임 타입은 선언된 타입과 다를 수 있습니다.<ul>
+<details>
+<summary>설명</summary>
+<div markdown="1"><br/>
+    
+```ts
+interface LightApiResponse {
+  lightSwitchValue: boolean;
+}
+async function setLight() {
+  const response = await fetch('/light');
+  const result: LightApiResponse = await response.json();
+  setLightSwitch(result.lightSwitchValue);
+}
+```
+위와 같이 /light를 요청하면 그 결과로 LightApiResponse를 반환하는 함수의 경우 lightSwitchValue를 boolean으로 설정하였지만 실제 응답의 타입이 boolean으로 보장되는 것은 아닙니다.<br/><br/>
+  
+</div>
+</details>
+</ul>
+
+- 타입스크립트 타입으로는 함수를 오버로드할 수 없습니다.<ul>
+<details>
+<summary>설명</summary>
+<div markdown="1"><br/>
+    
+```ts
+function add(a: number, b: number) { return a + b; }
+      // ~~~ Duplicate function implementation
+function add(a: string, b: string) { return a + b; }
+      // ~~~ Duplicate function implementation
+```
+C++과 같은 언어는 동일한 이름에 매개변수만 다른 여러 버전의 함수를 허용하는 '함수 오버로딩'이 가능하지만, 타입스크립트는 타입과 런타임의 동작이 무관하기 때문에 이러한 '함수 오버로딩'이 불가능합니다.<br/><br/>
+  
+</div>
+</details>
+</ul>
 
 ### 아이템 4 구조적 타이핑에 익숙해지기
 
