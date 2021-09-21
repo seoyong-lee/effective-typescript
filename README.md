@@ -341,7 +341,7 @@ C++과 같은 언어는 동일한 이름에 매개변수만 다른 여러 버전
 </details>
 </ul>
 
-### 아이템 4 구조적 타이핑에 익숙해지기
+### 아이템 4 구조적 타이핑에 익숙해지기 (준비중)
 
 - 자바스크립트가 덕 타이핑(duck typing) 기반이므로 이를 모델링하기 위해 타입스크립트가 구조적 타이핑을 사용함을 이해해야 합니다.
 - 클래스 역시 구조적 타이핑 규칙을 따르기 때문에 클래스의 인스턴스가 예상과 다를 수 있습니다.
@@ -349,9 +349,63 @@ C++과 같은 언어는 동일한 이름에 매개변수만 다른 여러 버전
 
 ### 아이템 5 any 타입 지양하기
 
-- any타입에는 타입 안정성이 없습니다.
-- any는 함수 시그니처를 무시해 버립니다.
-- any 타입에는 언어 서비스가 적용되지 않습니다.
+- any타입에는 타입 안정성이 없습니다.<ul>
+<details>
+<summary>설명</summary>
+<div markdown="1"><br/>
+    
+```ts
+let age: number;
+age = '12';
+// ~~~ Type '"12"' is not assignable to type 'number'
+age = '12' as any;  // OK
+  
+age += 1;  // OK; at runtime, age is now "121"
+```
+타입 단언문(as any)을 사용하면 string 타입을 할당할 수 있으나, 타입 체커는 계속해서 number 타입으로 판단하기 때문에 1을 더하면 "121"라는 잘못된 값이 됩니다.<br/><br/>
+
+</div>
+</details>
+</ul>
+
+- any는 함수의 약속을 무시해 버립니다.<ul>
+<details>
+<summary>설명</summary>
+<div markdown="1"><br/>
+    
+```ts
+function calculateAge(birthDate: Date): number {
+  // ...
+}
+
+let birthDate: any = '1990-01-19';
+calculateAge(birthDate);  // OK
+```
+birthData 매개변수는 string이 아닌 Date 타입이어야 합니다. any 타입을 사용하면 calculateAge의 타입을 무시하게 됩니다.<br/><br/>
+
+</div>
+</details>
+</ul>
+
+- any 타입에는 언어 서비스가 적용되지 않습니다.<ul>
+<details>
+<summary>설명</summary>
+<div markdown="1"><br/>
+    
+```ts
+interface Person {
+  firstName: string;
+  last: string;
+}
+const formatName = (p: Person) => `${p.firstName} ${p.last}`;
+const formatNameAny = (p: any) => `${p.first} ${p.last}`;
+```
+타입스크립트 언어 서비스는 자동완성 기능과 적절한 도움말을 제공합니다. 위의 경우처럼 Person 타입의 first가 firstName으로 변경되어도 any 타입의 심볼은 자동으로 반영되지 않습니다.<br/><br/>
+
+</div>
+</details>
+</ul>
+
 - any 타입은 코드 리팩토링 때 버그를 감춥니다.
 - any는 타입 설계를 감춰버립니다.
 - any는 타입시스템의 신뢰도를 떨어뜨립니다.
