@@ -15,9 +15,9 @@
 ## **타입스크립트 알아보기**
 ### 아이템 1 타입스크립트와 자바스크립트의 관계 이해하기
 
-- 타입스크립트는 자바스크립트의 상위집합입니다. 모든 자바스크립트 프로그램은 타입스크립트 프로그램이지만, 타입스크립트는 별도의 문법을 가지고 있으므로 반대의 경우는 성립하지 않습니다.<ul>
+<ul>
 <details>
-<summary>설명</summary>
+<summary>타입스크립트는 자바스크립트의 상위집합입니다. 모든 자바스크립트 프로그램은 타입스크립트 프로그램이지만, 타입스크립트는 별도의 문법을 가지고 있으므로 반대의 경우는 성립하지 않습니다.</summary>
 <div markdown="1"><br/>
   
 ```js
@@ -33,9 +33,9 @@ function greet(who: string) { // SyntaxError: Unexpected token :
 </details>
 </ul>
 
-- 타입스크립트의 타입 구문은 코드의 '의도'가 무엇인지 알려주어 동작과 의도가 다른 부분을 찾을 수 있도록 도와줍니다.<ul>
+<ul>
 <details>
-<summary>설명</summary>
+<summary>타입스크립트의 타입 구문은 코드의 '의도'가 무엇인지 알려주어 동작과 의도가 다른 부분을 찾을 수 있도록 도와줍니다.</summary>
 <div markdown="1"><br/>
   
 ```ts
@@ -58,9 +58,9 @@ const states: State[] = [
 </details>
 </ul>
 
-- 타입스크립트의 타입 체커를 통과하면서도 런타임 오류를 발생시키는 코드가 존재할 수 있습니다. 타입 시스템은 정적 타입의 정확성을 보장해 주지는 않습니다.<ul>
+<ul>
 <details>
-<summary>설명</summary>
+<summary>타입스크립트의 타입 체커를 통과하면서도 런타임 오류를 발생시키는 코드가 존재할 수 있습니다. 타입 시스템은 정적 타입의 정확성을 보장해 주지는 않습니다.</summary>
 <div markdown="1"><br/>
   
 ```ts
@@ -76,9 +76,9 @@ console.log(names[2].toUpperCase());
 
 ### 아이템 2 타입스크립트 설정 이해하기
 
-- 타입스크립트 설정은 커맨드 라인으로도 할 수 있지만, 협업을 위해서 되도록 tsconfig.json을 사용하는 것이 좋습니다.<ul>
+<ul>
 <details>
-<summary>설명</summary>
+<summary>타입스크립트 설정은 커맨드 라인으로도 할 수 있지만, 협업을 위해서 되도록 tsconfig.json을 사용하는 것이 좋습니다.</summary>
 <div markdown="1"><br/>
   
 ```cli
@@ -90,9 +90,9 @@ $ tsc --init
 </details>
 </ul>
 
-- 자바스크립트 프로젝트를 타입스크립트로 전환하는 경우가 아니라면 `noImplicitAny`를 설정하는 것이 좋습니다.<ul>
+<ul>
 <details>
-<summary>설명</summary>
+<summary>자바스크립트 프로젝트를 타입스크립트로 전환하는 경우가 아니라면 `noImplicitAny`를 설정하는 것이 좋습니다.</summary>
 <div markdown="1"><br/>
   
 **나쁜 예:** 
@@ -121,9 +121,9 @@ function add(a, b) {
 </details>
 </ul>
 
-- "undefined는 객체가 아닙니다"와 같은 런타임 오류를 방지하기 위해 `strictNullChecks`를 설정하는 것이 좋습니다.<ul>
+<ul>
 <details>
-<summary>설명</summary>
+<summary>"undefined는 객체가 아닙니다"와 같은 런타임 오류를 방지하기 위해 `strictNullChecks`를 설정하는 것이 좋습니다.</summary>
 <div markdown="1"><br/>
   
 **나쁜 예:**
@@ -147,9 +147,9 @@ const x: number = null;
 </details>
 </ul>
 
-- 위의 모든 체크를 설정하고 싶다면 strict 설정을 할 수 있습니다. strict 설정은 대부분의 오류를 잡아냅니다.<ul>
+<ul>
 <details>
-<summary>설명</summary>
+<summary>위의 모든 체크를 설정하고 싶다면 strict 설정을 할 수 있습니다. strict 설정은 대부분의 오류를 잡아냅니다.</summary>
 <div markdown="1"><br/>
   
 ```ts
@@ -165,9 +165,9 @@ const x: number = null;
 
 ### 아이템 3 코드 생성과 타입이 관계없음을 이해하기
 
-- 타입 시스템과 컴파일은 무관합니다. 또한, 타입 오류가 있는 코드도 컴파일은 가능합니다.<ul>
+<ul>
 <details>
-<summary>설명</summary>
+<summary>타입 시스템과 컴파일은 무관합니다. 또한, 타입 오류가 있는 코드도 컴파일은 가능합니다.</summary>
 <div markdown="1"><br/>
   
 ```ts
@@ -189,9 +189,9 @@ x = 1234;
 </details>
 </ul>
 
-- 런타임에는 타입 체크가 불가능합니다.<ul>
+<ul>
 <details>
-<summary>설명</summary>
+<summary>런타임에는 타입 체크가 불가능합니다.</summary>
 <div markdown="1"><br/>
     
 **나쁜 예:** 
@@ -271,9 +271,9 @@ function calculateArea(shape: Shape) {
 </details>
 </ul>
 
-- 타입 연산은 런타임에 영향을 주지 않습니다. 따라서 타입은 런타임 성능과도 무관합니다.<ul>
+<ul>
 <details>
-<summary>설명</summary>
+<summary>타입 연산은 런타임에 영향을 주지 않습니다. 따라서 타입은 런타임 성능과도 무관합니다.</summary>
 <div markdown="1"><br/>
     
 **나쁜 예:** 
@@ -303,9 +303,9 @@ function asNumber(val: number | string): number {
 </details>
 </ul>
   
-- 런타임 타입은 선언된 타입과 다를 수 있습니다.<ul>
+<ul>
 <details>
-<summary>설명</summary>
+<summary>런타임 타입은 선언된 타입과 다를 수 있습니다.</summary>
 <div markdown="1"><br/>
     
 ```ts
@@ -324,9 +324,9 @@ async function setLight() {
 </details>
 </ul>
 
-- 타입스크립트 타입으로는 함수를 오버로드할 수 없습니다.<ul>
+<ul>
 <details>
-<summary>설명</summary>
+<summary>타입스크립트 타입으로는 함수를 오버로드할 수 없습니다.</summary>
 <div markdown="1"><br/>
     
 ```ts
@@ -349,9 +349,9 @@ C++과 같은 언어는 동일한 이름에 매개변수만 다른 여러 버전
 
 ### 아이템 5 any 타입 지양하기
 
-- any타입에는 타입 안정성이 없습니다.<ul>
+<ul>
 <details>
-<summary>설명</summary>
+<summary>any타입에는 타입 안정성이 없습니다.</summary>
 <div markdown="1"><br/>
     
 ```ts
@@ -368,9 +368,9 @@ age += 1;  // OK; at runtime, age is now "121"
 </details>
 </ul>
 
-- any는 함수의 약속을 무시해 버립니다.<ul>
+<ul>
 <details>
-<summary>설명</summary>
+<summary>any는 함수의 약속을 무시해 버립니다.</summary>
 <div markdown="1"><br/>
     
 ```ts
@@ -387,9 +387,9 @@ birthData 매개변수는 string이 아닌 Date 타입이어야 합니다. any �
 </details>
 </ul>
 
-- any 타입에는 언어 서비스가 적용되지 않습니다.<ul>
+<ul>
 <details>
-<summary>설명</summary>
+<summary>any 타입에는 언어 서비스가 적용되지 않습니다.</summary>
 <div markdown="1"><br/>
     
 ```ts
